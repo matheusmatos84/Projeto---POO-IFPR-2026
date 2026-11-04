@@ -4,6 +4,8 @@
  */
 package views;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.bean.Cliente;
 import model.dao.ClienteDAO;
 
@@ -12,18 +14,40 @@ import model.dao.ClienteDAO;
  * @author Aluno
  */
 public class TelaCliente extends javax.swing.JInternalFrame {
-
+    
+    private Cliente meuCliente;
     /**
      * Creates new form TelaCliente
      */
     public TelaCliente() {
         initComponents();
+        preencherTabela();
+        limpar();
     }
     
     // Metodo para limpar a tela
     public void limpar() {
         txtNome.setText("");
         txtTelefone.setText("");
+        
+        tblCadastrados.clearSelection();
+        btnSalvar.setEnabled(true);
+        btnEditar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+    }
+    
+    public void preencherTabela(){
+        DefaultTableModel dtm = (DefaultTableModel) tblCadastrados.getModel();
+        dtm.setRowCount(0);
+        ClienteDAO dao = new ClienteDAO();
+        
+        for(Cliente c : dao.read()){
+            dtm.addRow(new Object[]{
+                c.getIdCliente(),
+                c.getNome(),
+                c.getTelefone()
+            });
+        }
     }
 
     /**
@@ -59,8 +83,18 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         jLabel2.setText("Telefone");
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +164,11 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 "ID", "Nome", "Telefone"
             }
         ));
+        tblCadastrados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCadastradosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCadastrados);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,12 +209,58 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         dao.create(meuCliente);
         
         limpar();
+        preencherTabela();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
         limpar();
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        meuCliente.setNome(txtNome.getText());
+        meuCliente.setTelefone(txtTelefone.getText());
+        
+        ClienteDAO dao = new ClienteDAO();
+        dao.update(meuCliente);
+        
+        limpar();
+        preencherTabela();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void tblCadastradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCadastradosMouseClicked
+        int linha = tblCadastrados.getSelectedRow();
+        
+        if(linha != -1){
+           // JOptionPane.showMessageDialog(null, "Entrou!");
+            String id = tblCadastrados.getValueAt(linha, 0).toString();
+            
+            ClienteDAO dao = new ClienteDAO();
+            meuCliente = dao.read(Integer.parseInt(id));
+            
+            // Preencher os campos do formualario
+            txtNome.setText(meuCliente.getNome());
+            txtTelefone.setText(meuCliente.getTelefone());
+            
+            btnSalvar.setEnabled(false);
+            btnEditar.setEnabled(true);
+            btnExcluir.setEnabled(true);
+        }
+        
+        
+    }//GEN-LAST:event_tblCadastradosMouseClicked
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int opcao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir?");
+        
+        if(opcao == JOptionPane.YES_OPTION){
+            ClienteDAO dao = new ClienteDAO();
+            dao.destroy(meuCliente);
+        }
+        
+        limpar();
+        preencherTabela();
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
