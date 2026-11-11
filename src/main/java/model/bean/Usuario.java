@@ -15,7 +15,6 @@ public class Usuario {
     private String emailUsuario;
     private String senhaUsuario;
     private String perfilUsuario;
-    private boolean ativo;
     
     // Getter e setter
     public int getIdUsuario() {
@@ -58,12 +57,4 @@ public class Usuario {
         this.perfilUsuario = perfilUsuario;
     }
 
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
-    
 }

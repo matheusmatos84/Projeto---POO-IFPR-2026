@@ -67,6 +67,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuGerenciar.add(menuGerenciarCliente);
 
         menuGerenciarUsuario.setText("Usuario");
+        menuGerenciarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGerenciarUsuarioActionPerformed(evt);
+            }
+        });
         menuGerenciar.add(menuGerenciarUsuario);
 
         menuGerenciarProduto.setText("Produto");
@@ -105,6 +110,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tela.setVisible(true);
         painelPrincipal.add(tela);
     }//GEN-LAST:event_menuGerenciarClienteActionPerformed
+
+    private void menuGerenciarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarUsuarioActionPerformed
+        // TODO add your handling code here:
+        TelaUsuario tela = new TelaUsuario(); 
+        tela.setVisible(true);
+        painelPrincipal.add(tela);
+    }//GEN-LAST:event_menuGerenciarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
