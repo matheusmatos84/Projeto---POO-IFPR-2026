@@ -57,4 +57,10 @@ public class Usuario {
         this.perfilUsuario = perfilUsuario;
     }
 
+    @Override
+    public String toString() {
+        return nomeUsuario;
+    }
+    
+    
 }

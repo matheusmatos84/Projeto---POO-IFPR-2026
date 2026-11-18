@@ -26,6 +26,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         painelPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
@@ -33,7 +34,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuGerenciar = new javax.swing.JMenu();
         menuGerenciarCliente = new javax.swing.JMenuItem();
         menuGerenciarUsuario = new javax.swing.JMenuItem();
+        menuGerenciarPedido = new javax.swing.JRadioButtonMenuItem();
         menuGerenciarProduto = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Açougue da Resenha");
@@ -42,11 +46,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelPrincipal.setLayout(painelPrincipalLayout);
         painelPrincipalLayout.setHorizontalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 695, Short.MAX_VALUE)
+            .addGap(0, 1064, Short.MAX_VALUE)
         );
         painelPrincipalLayout.setVerticalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 431, Short.MAX_VALUE)
+            .addGap(0, 703, Short.MAX_VALUE)
         );
 
         menuArquivo.setText("Arquivo");
@@ -73,6 +77,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         menuGerenciar.add(menuGerenciarUsuario);
+
+        menuGerenciarPedido.setSelected(true);
+        menuGerenciarPedido.setText("Pedido");
+        menuGerenciarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGerenciarPedidoActionPerformed(evt);
+            }
+        });
+        menuGerenciar.add(menuGerenciarPedido);
 
         menuGerenciarProduto.setText("Produto");
         menuGerenciarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +131,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelPrincipal.add(tela);
     }//GEN-LAST:event_menuGerenciarUsuarioActionPerformed
 
+    private void menuGerenciarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarPedidoActionPerformed
+        // TODO add your handling code here:
+        TelaPedido tela = new TelaPedido(); 
+        tela.setVisible(true);
+        painelPrincipal.add(tela);
+    }//GEN-LAST:event_menuGerenciarPedidoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -155,10 +175,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu menuArquivo;
     private javax.swing.JMenuItem menuArquivoSair;
     private javax.swing.JMenu menuGerenciar;
     private javax.swing.JMenuItem menuGerenciarCliente;
+    private javax.swing.JRadioButtonMenuItem menuGerenciarPedido;
     private javax.swing.JMenuItem menuGerenciarProduto;
     private javax.swing.JMenuItem menuGerenciarUsuario;
     private javax.swing.JDesktopPane painelPrincipal;

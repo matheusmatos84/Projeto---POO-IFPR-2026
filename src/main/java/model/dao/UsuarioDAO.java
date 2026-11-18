@@ -57,11 +57,11 @@ public class UsuarioDAO {
             rs = stmt.executeQuery();
             while(rs.next()){
                 Usuario u = new Usuario();
-                u.setIdUsuario(rs.getInt("id_usuario"));
-                u.setNomeUsuario(rs.getString("nome"));
-                u.setEmailUsuario(rs.getString("email"));
-                u.setSenhaUsuario(rs.getString("senha"));
-                u.setPerfilUsuario(rs.getString("perfil_usuario"));
+                u.setIdUsuario(rs.getInt("idUsuario"));
+                u.setNomeUsuario(rs.getString("nomeUsuario"));
+                u.setEmailUsuario(rs.getString("emailUsuario"));
+                u.setSenhaUsuario(rs.getString("senhaUsuario"));
+                u.setPerfilUsuario(rs.getString("perfilUsuario"));
                 
                 listaUsuarios.add(u);
             }
